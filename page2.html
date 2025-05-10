@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Z3r0 d4y</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            background-color: #0a0a0a;
+            color: #f5f5f5;
+        }
+        header {
+            background-color: #121212;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            border-bottom: 2px solid #00aaff;
+        }
+        nav {
+            background-color: #1a1a1a;
+            padding: 0.5rem;
+        }
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        nav ul li {
+            margin: 0 1rem;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        nav ul li a:hover {
+            color: #00aaff;
+        }
+        .active {
+            color: #00aaff;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        .about-section {
+            background-color: #121212;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            margin-bottom: 2rem;
+            border: 1px solid #1a1a1a;
+        }
+        .about-section h2 {
+            color: #00aaff;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-size: 2rem;
+        }
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+            align-items: center;
+        }
+        .about-image {
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #00aaff;
+            box-shadow: 0 0 20px rgba(0, 170, 255, 0.3);
+        }
+        .about-image img {
+            width: 100%;
+            display: block;
+        }
+        .about-text p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        .team-section {
+            margin-top: 3rem;
+        }
+        .team-section h2 {
+            color: #00aaff;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-size: 2rem;
+        }
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        .team-member {
+            background-color: #121212;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #1a1a1a;
+        }
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 25px rgba(0, 170, 255, 0.2);
+            border-color: #00aaff;
+        }
+        .member-image {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+        .member-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .member-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 70%, #121212);
+        }
+        .member-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+        .member-info h3 {
+            color: #00aaff;
+            margin-bottom: 0.5rem;
+        }
+        .member-info p {
+            color: #a0a0a0;
+            margin-bottom: 1rem;
+        }
+        .member-info .role {
+            font-weight: bold;
+            color: #f5f5f5;
+        }
+        .member-info .id {
+            font-size: 0.85rem;
+            color: #00aaff;
+            margin-top: 0.5rem;
+        }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .social-links a {
+            color: #00aaff;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+        .social-links a:hover {
+            color: white;
+        }
+        .timeline {
+            margin-top: 3rem;
+            position: relative;
+            padding: 2rem 0;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background-color: #00aaff;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .timeline-item {
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        .timeline-content {
+            background-color: #121212;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            padding: 1.5rem;
+            width: 45%;
+            position: relative;
+            border: 1px solid #1a1a1a;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            border-color: #00aaff;
+            box-shadow: 0 10px 20px rgba(0, 170, 255, 0.2);
+        }
+        .timeline-content h3 {
+            color: #00aaff;
+            margin-bottom: 0.5rem;
+        }
+        .timeline-content p {
+            line-height: 1.6;
+        }
+        .timeline-date {
+            position: absolute;
+            top: -1rem;
+            background-color: #00aaff;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            z-index: 1;
+        }
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: auto;
+        }
+        .timeline-item:nth-child(odd) .timeline-date {
+            left: 1.5rem;
+            right: auto;
+        }
+        .timeline-item:nth-child(even) .timeline-date {
+            right: 1.5rem;
+            left: auto;
+        }
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #00aaff;
+            border-radius: 50%;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 10px rgba(0, 170, 255, 0.7);
+        }
+        footer {
+            background-color: #121212;
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            border-top: 2px solid #00aaff;
+        }
+        .progress-container {
+            width: 100%;
+            height: 5px;
+            background-color: #1a1a1a;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+        .progress-bar {
+            height: 5px;
+            background-color: #00aaff;
+            width: 0%;
+            box-shadow: 0 0 10px rgba(0, 170, 255, 0.7);
+        }
+        .skills-section {
+            margin-top: 3rem;
+        }
+        .skills-section h2 {
+            color: #00aaff;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-size: 2rem;
+        }
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+        .skill {
+            background-color: #121212;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            text-align: center;
+            border: 1px solid #1a1a1a;
+            transition: all 0.3s;
+        }
+        .skill:hover {
+            transform: translateY(-5px);
+            border-color: #00aaff;
+            box-shadow: 0 10px 20px rgba(0, 170, 255, 0.2);
+        }
+        .skill-icon {
+            font-size: 2.5rem;
+            color: #00aaff;
+            margin-bottom: 1rem;
+        }
+        .skill h3 {
+            color: #f5f5f5;
+            margin-bottom: 0.5rem;
+        }
+        .skill-bar {
+            width: 100%;
+            height: 10px;
+            background-color: #1a1a1a;
+            border-radius: 5px;
+            margin-top: 1rem;
+            overflow: hidden;
+        }
+        .skill-progress {
+            height: 100%;
+            background-color: #00aaff;
+            border-radius: 5px;
+            width: 0;
+            transition: width 1.5s ease-in-out;
+        }
+        @media (max-width: 768px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            .timeline::before {
+                left: 30px;
+            }
+            .timeline-item .timeline-content {
+                width: calc(100% - 80px);
+                margin-left: 80px;
+            }
+            .timeline-item:nth-child(odd) .timeline-content {
+                margin-left: 80px;
+            }
+            .timeline-item::after {
+                left: 30px;
+            }
+            .timeline-item .timeline-date {
+                position: relative;
+                top: -10px;
+                right: auto !important;
+                left: 0 !important;
+                display: inline-block;
+                margin-bottom: 10px;
+            }
+        }
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.05;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="matrix" class="matrix-bg"></canvas>
+    <div class="progress-container">
+        <div class="progress-bar" id="progress-bar"></div>
+    </div>
+    <header>
+        <h1>Z3r0 d4y</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="page1.html">Home</a></li>
+            <li><a href="page2.html" class="active">About Us</a></li>
+            <li><a href="page3.html">Contact</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <section class="about-section">
+            <h2>About Us</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="https://images.pexels.com/photos/5380642/pexels-photo-5380642.jpeg?auto=compress&cs=tinysrgb&w=400&h=300" alt="Company Image">
+                </div>
+                <div class="about-text">
+                    <p>Z3r0 d4y is a leading cybersecurity and artificial intelligence company founded by experts in the field. We specialize in identifying and exploiting zero-day vulnerabilities to help organizations strengthen their security posture.</p>
+                    <p>Our mission is to leverage cutting-edge AI technology to create innovative security solutions that protect our clients from ever-evolving cyber threats. We believe that security should be proactive, not reactive.</p>
+                    <p>Our team consists of ethical hackers, security researchers, and AI specialists who work together to develop comprehensive security strategies and solutions that stay ahead of potential threats.</p>
+                    <p>We take pride in our ability to identify vulnerabilities that others miss, helping our clients protect their most valuable digital assets and maintain their security integrity in an increasingly hostile digital landscape.</p>
+                </div>
+            </div>
+        </section>
+        <section class="team-section">
+            <h2>Our Team</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="https://images.pexels.com/photos/5380651/pexels-photo-5380651.jpeg?auto=compress&cs=tinysrgb&w=400&h=400" alt="Team Member">
+                    </div>
+                    <div class="member-info">
+                        <h3>Abdallah Bassem</h3>
+                        <p class="role">CEO & Founder</p>
+                        <p>Leading our team with expertise in cybersecurity and AI integration.</p>
+                        <p class="id">ID: 20210008</p>
+                        <div class="social-links">
+                            <a href="#"><span>🌐</span></a>
+                            <a href="#"><span>📱</span></a>
+                            <a href="#"><span>🔗</span></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="https://images.pexels.com/photos/3778603/pexels-photo-3778603.jpeg?auto=compress&cs=tinysrgb&w=400&h=400" alt="Team Member">
+                    </div>
+                    <div class="member-info">
+                        <h3>Nour Sameh</h3>
+                        <p class="role">AI Research Specialist</p>
+                        <p>Developing advanced AI solutions for security applications.</p>
+                        <p class="id">ID: 20210009</p>
+                        <div class="social-links">
+                            <a href="#"><span>🌐</span></a>
+                            <a href="#"><span>📱</span></a>
+                            <a href="#"><span>🔗</span></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="https://images.pexels.com/photos/3831645/pexels-photo-3831645.jpeg?auto=compress&cs=tinysrgb&w=400&h=400" alt="Team Member">
+                    </div>
+                    <div class="member-info">
+                        <h3>Mohammed Adel</h3>
+                        <p class="role">Security Operations Lead</p>
+                        <p>Overseeing penetration testing and vulnerability assessments.</p>
+                        <p class="id">ID: 20210242</p>
+                        <div class="social-links">
+                            <a href="#"><span>🌐</span></a>
+                            <a href="#"><span>📱</span></a>
+                            <a href="#"><span>🔗</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="skills-section">
+            <h2>Our Expertise</h2>
+            <div class="skills-container">
+                <div class="skill">
+                    <div class="skill-icon">🔐</div>
+                    <h3>Network Security</h3>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-progress="95"></div>
+                    </div>
+                </div>
+                <div class="skill">
+                    <div class="skill-icon">🤖</div>
+                    <h3>Artificial Intelligence</h3>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-progress="90"></div>
+                    </div>
+                </div>
+                <div class="skill">
+                    <div class="skill-icon">🧪</div>
+                    <h3>Penetration Testing</h3>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-progress="98"></div>
+                    </div>
+                </div>
+                <div class="skill">
+                    <div class="skill-icon">🛡️</div>
+                    <h3>Incident Response</h3>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-progress="85"></div>
+                    </div>
+                </div>
+                <div class="skill">
+                    <div class="skill-icon">📊</div>
+                    <h3>Data Analysis</h3>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-progress="88"></div>
+                    </div>
+                </div>
+                <div class="skill">
+                    <div class="skill-icon">🔍</div>
+                    <h3>Digital Forensics</h3>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-progress="92"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="timeline">
+            <h2>Our Journey</h2>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span class="timeline-date">2021</span>
+                    <h3>Foundation</h3>
+                    <p>Z3r0 d4y was founded with a vision to revolutionize cybersecurity through AI integration.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span class="timeline-date">2022</span>
+                    <h3>First Major Contract</h3>
+                    <p>Secured our first major client and successfully identified critical zero-day vulnerabilities.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span class="timeline-date">2023</span>
+                    <h3>AI Platform Launch</h3>
+                    <p>Launched our proprietary AI-driven security analysis platform for automated threat detection.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span class="timeline-date">2025</span>
+                    <h3>Global Expansion</h3>
+                    <p>Currently expanding our operations globally with new offices and an enhanced service portfolio.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+    <footer>
+        <p>Copyright © Z3r0 d4y 2025 | AI & Cyber Security Solutions</p>
+    </footer>
+    <script>
+        window.onscroll = function() {scrollFunction()};
+        function scrollFunction() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById("progress-bar").style.width = scrolled + "%";
+        }
+        const teamMembers = document.querySelectorAll('.team-member');
+        teamMembers.forEach(member => {
+            member.addEventListener('click', function() {
+                this.classList.toggle('active');
+                const memberInfo = this.querySelector('.member-info');
+                if (this.classList.contains('active')) {
+                    memberInfo.style.backgroundColor = '#1a1a1a';
+                } else {
+                    memberInfo.style.backgroundColor = '#121212';
+                }
+            });
+        });
+        function animateTimeline() {
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            timelineItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        item.style.transition = 'opacity 0.5s, transform 0.5s';
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateY(0)';
+                    }, 100);
+                }, index * 1500);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(animateTimeline, 1000);
+            const skillBars = document.querySelectorAll('.skill-progress');
+            function animateSkills() {
+                skillBars.forEach(bar => {
+                    const progress = bar.getAttribute('data-progress');
+                    bar.style.width = progress + '%';
+                });
+            }
+            setTimeout(animateSkills, 500);
+            setInterval(animateTimeline, 10000);
+        });
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%^&*()*&^%+-/~{[|`]}';
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        const drops = [];
+        for (let i = 0; i < columns; i++) {
+            drops[i] = 1;
+        }
+        function draw() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#0f0';
+            ctx.font = fontSize + 'px monospace';
+            for (let i = 0; i < drops.length; i++) {
+                const text = characters.charAt(Math.floor(Math.random() * characters.length));
+                const x = i * fontSize;
+                const y = drops[i] * fontSize;
+                ctx.fillText(text, x, y);
+                if (y > canvas.height && Math.random() > 0.99) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+        setInterval(draw, 33);
+        window.addEventListener('resize', function() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+</body>
+</html>

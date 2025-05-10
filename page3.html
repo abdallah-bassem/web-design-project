@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Z3r0 d4y</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            background-color: #0a0a0a;
+            color: #f5f5f5;
+        }
+        header {
+            background-color: #121212;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            border-bottom: 2px solid #00aaff;
+        }
+        nav {
+            background-color: #1a1a1a;
+            padding: 0.5rem;
+        }
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        nav ul li {
+            margin: 0 1rem;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        nav ul li a:hover {
+            color: #00aaff;
+        }
+        .active {
+            color: #00aaff;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        .contact-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        .contact-info {
+            background-color: #121212;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            border: 1px solid #1a1a1a;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .contact-info:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 170, 255, 0.2);
+            border-color: #00aaff;
+        }
+        .contact-info h2 {
+            color: #00aaff;
+            margin-bottom: 1.5rem;
+        }
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        .info-icon {
+            width: 50px;
+            height: 50px;
+            background-color: #1a1a1a;
+            color: #00aaff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            border: 1px solid #2a2a2a;
+            transition: all 0.3s;
+        }
+        .info-item:hover .info-icon {
+            background-color: #00aaff;
+            color: white;
+            box-shadow: 0 0 15px rgba(0, 170, 255, 0.5);
+        }
+        .info-content h3 {
+            color: #00aaff;
+            margin-bottom: 0.25rem;
+        }
+        .contact-form {
+            background-color: #121212;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            border: 1px solid #1a1a1a;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .contact-form:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 170, 255, 0.2);
+            border-color: #00aaff;
+        }
+        .contact-form h2 {
+            color: #00aaff;
+            margin-bottom: 1.5rem;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #f5f5f5;
+        }
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: #1a1a1a;
+            border: 1px solid #2a2a2a;
+            border-radius: 5px;
+            font-size: 1rem;
+            color: #f5f5f5;
+            transition: all 0.3s;
+        }
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+        .form-control:focus {
+            outline: none;
+            border-color: #00aaff;
+            box-shadow: 0 0 0 2px rgba(0, 170, 255, 0.25);
+        }
+        .btn {
+            background-color: #00aaff;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn:hover {
+            background-color: #0088cc;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 170, 255, 0.4);
+        }
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+        .btn:hover::before {
+            left: 100%;
+        }
+        .map-section {
+            margin-top: 3rem;
+        }
+        .map-section h2 {
+            color: #00aaff;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .map-container {
+            height: 400px;
+            background-color: #121212;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid #1a1a1a;
+            transition: all 0.3s;
+        }
+        .map-container:hover {
+            border-color: #00aaff;
+            box-shadow: 0 10px 20px rgba(0, 170, 255, 0.2);
+        }
+        .map-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #121212;
+            color: #7f8c8d;
+            font-size: 1.5rem;
+        }
+        footer {
+            background-color: #121212;
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            border-top: 2px solid #00aaff;
+        }
+        .faq-section {
+            margin-top: 3rem;
+        }
+        .faq-section h2 {
+            color: #00aaff;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .accordion {
+            background-color: #121212;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            overflow: hidden;
+            border: 1px solid #1a1a1a;
+        }
+        .accordion-item {
+            border-bottom: 1px solid #1a1a1a;
+        }
+        .accordion-item:last-child {
+            border-bottom: none;
+        }
+        .accordion-header {
+            padding: 1.5rem;
+            cursor: pointer;
+            background-color: #121212;
+            position: relative;
+            font-weight: bold;
+            color: #f5f5f5;
+            transition: all 0.3s;
+        }
+        .accordion-header:hover {
+            background-color: #1a1a1a;
+        }
+        .accordion-header::after {
+            content: '+';
+            position: absolute;
+            right: 1.5rem;
+            transition: transform 0.3s;
+            font-size: 1.5rem;
+            color: #00aaff;
+        }
+        .accordion-header.active {
+            background-color: #1a1a1a;
+        }
+        .accordion-header.active::after {
+            content: '-';
+            transform: rotate(0);
+        }
+        .accordion-content {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            background-color: #0a0a0a;
+            transition: all 0.3s ease;
+        }
+        .accordion-content.active {
+            padding: 1.5rem;
+            max-height: 500px;
+        }
+        .notification {
+            position: fixed;
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #00aaff;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            transition: top 0.5s;
+            z-index: 1000;
+        }
+        .notification.show {
+            top: 20px;
+        }
+        .social-media {
+            margin-top: 2rem;
+        }
+        .social-media h3 {
+            color: #00aaff;
+            margin-bottom: 1rem;
+        }
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+        }
+        .social-icon {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            background-color: #1a1a1a;
+            color: #00aaff;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+            text-decoration: none;
+            border: 1px solid #2a2a2a;
+        }
+        .social-icon:hover {
+            background-color: #00aaff;
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 170, 255, 0.4);
+        }
+        .quote-section {
+            margin-top: 3rem;
+            padding: 2rem;
+            background-color: #121212;
+            border-radius: 10px;
+            border: 1px solid #1a1a1a;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .quote-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #00aaff, #0088cc);
+        }
+        .quote-text {
+            font-size: 1.5rem;
+            font-style: italic;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        .quote-text::before, .quote-text::after {
+            content: '"';
+            color: #00aaff;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        .quote-author {
+            color: #00aaff;
+            font-weight: bold;
+        }
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.05;
+        }
+        @media (max-width: 768px) {
+            .contact-section {
+                grid-template-columns: 1fr;
+            }
+        }
+        .form-control::placeholder {
+            color: #666;
+        }
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(0, 170, 255, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(0, 170, 255, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(0, 170, 255, 0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="matrix" class="matrix-bg"></canvas>
+    <header>
+        <h1>Z3r0 d4y</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="page1.html">Home</a></li>
+            <li><a href="page2.html">About Us</a></li>
+            <li><a href="page3.html" class="active">Contact</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <section class="contact-section">
+            <div class="contact-info">
+                <h2>Contact Information</h2>
+                <div class="info-item">
+                    <div class="info-icon">📍</div>
+                    <div class="info-content">
+                        <h3>Address</h3>
+                        <p>123 Tech Hub Street, Cairo, Egypt</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">📱</div>
+                    <div class="info-content">
+                        <h3>Phone</h3>
+                        <p>+20 123 456 7890</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">📧</div>
+                    <div class="info-content">
+                        <h3>Email</h3>
+                        <p>contact@Z3r0d4y.com</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">🕒</div>
+                    <div class="info-content">
+                        <h3>Working Hours</h3>
+                        <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
+                    </div>
+                </div>
+                <div class="social-media">
+                    <h3>Follow Us</h3>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon">🌐</a>
+                        <a href="#" class="social-icon">📱</a>
+                        <a href="#" class="social-icon">💻</a>
+                        <a href="#" class="social-icon">📢</a>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form">
+                <h2>Send Us a Message</h2>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" class="form-control" required placeholder="Your name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" class="form-control" required placeholder="your.email@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" class="form-control" required placeholder="How can we help you?">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" class="form-control" required placeholder="Your message here..."></textarea>
+                    </div>
+                    <button type="submit" class="btn pulse">Send Message</button>
+                </form>
+            </div>
+        </section>
+        <section class="quote-section" style="background-image: url('https://images.pexels.com/photos/1089438/pexels-photo-1089438.jpeg?auto=compress&cs=tinysrgb&w=1200&h=300'); background-size: cover; background-position: center; position: relative; padding: 3rem 2rem;">
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7);"></div>
+            <div style="position: relative; z-index: 1;">
+                <div class="quote-text" style="color: white; text-shadow: 0 0 10px rgba(0,170,255,0.5);">Security is not a product, but a process.</div>
+                <div class="quote-author" style="color: #00aaff; text-shadow: 0 0 5px rgba(0,0,0,0.5);">- Bruce Schneier</div>
+            </div>
+        </section>
+        <section class="map-section">
+            <h2>Our Location</h2>
+            <div class="map-container">
+                <div class="map-placeholder" style="position: relative;">
+                    <img src="https://images.pexels.com/photos/4792729/pexels-photo-4792729.jpeg?auto=compress&cs=tinysrgb&w=1200&h=400" alt="Map Location" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.8;">
+                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(0,0,0,0.7); padding: 20px; border-radius: 5px; text-align: center;">
+                        <h3 style="color: #00aaff; margin-bottom: 10px;">Z3r0 d4y Headquarters</h3>
+                        <p>123 Tech Hub Street, Cairo, Egypt</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="faq-section">
+            <h2>Frequently Asked Questions</h2>
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header">What services does Z3r0 d4y offer?</div>
+                    <div class="accordion-content">
+                        <p>Z3r0 d4y offers a comprehensive range of cybersecurity and AI services including penetration testing, vulnerability assessments, red team operations, security consulting, AI-driven threat detection, machine learning model development, and custom security solutions tailored to your organization's specific needs.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">How can I request a security assessment?</div>
+                    <div class="accordion-content">
+                        <p>You can request a security assessment by filling out the contact form on our website, emailing us directly at contact@Z3r0d4y.com, or calling our office. Our team will respond promptly to discuss your requirements and provide a detailed proposal based on your organization's specific needs.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">How long does a typical security assessment take?</div>
+                    <div class="accordion-content">
+                        <p>The duration of a security assessment varies depending on the scope and complexity of your environment. A basic assessment might take 1-2 weeks, while a comprehensive evaluation of a complex infrastructure could take 4-6 weeks. We'll provide you with a detailed timeline after understanding your specific requirements.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">Do you provide post-assessment support?</div>
+                    <div class="accordion-content">
+                        <p>Yes, we offer comprehensive post-assessment support services. This includes remediation guidance, verification testing, and ongoing security monitoring. We can also provide training for your team to help them understand the vulnerabilities identified and how to address them effectively.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">How does Z3r0 d4y integrate AI with cybersecurity?</div>
+                    <div class="accordion-content">
+                        <p>We integrate AI with cybersecurity through various innovative approaches, including developing machine learning models for anomaly detection, using natural language processing to analyze security logs, creating predictive threat intelligence systems, and implementing automated response mechanisms. Our AI solutions are designed to enhance traditional security measures by identifying patterns and threats that might otherwise go undetected.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div id="notification" class="notification">Your message has been sent successfully!</div>
+    <footer>
+        <p>Copyright © Z3r0 d4y 2025 | AI & Cyber Security Solutions</p>
+    </footer>
+    <script>
+        const accordionHeaders = document.querySelectorAll('.accordion-header');
+        accordionHeaders.forEach(header => {
+            header.addEventListener('click', function() {
+                const accordionContent = this.nextElementSibling;
+                this.classList.toggle('active');
+                if (this.classList.contains('active')) {
+                    accordionContent.classList.add('active');
+                } else {
+                    accordionContent.classList.remove('active');
+                }
+                accordionHeaders.forEach(item => {
+                    if (item !== this) {
+                        item.classList.remove('active');
+                        item.nextElementSibling.classList.remove('active');
+                    }
+                });
+            });
+        });
+        const contactForm = document.getElementById('contactForm');
+        const notification = document.getElementById('notification');
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const nameInput = document.getElementById('name');
+            const emailInput = document.getElementById('email');
+            const subjectInput = document.getElementById('subject');
+            const messageInput = document.getElementById('message');
+            if (nameInput.value.trim() === '' || 
+                emailInput.value.trim() === '' || 
+                subjectInput.value.trim() === '' || 
+                messageInput.value.trim() === '') {
+                alert('Please fill in all required fields');
+                return;
+            }
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(emailInput.value.trim())) {
+                alert('Please enter a valid email address');
+                return;
+            }
+            notification.classList.add('show');
+            setTimeout(function() {
+                notification.classList.remove('show');
+            }, 3000);
+            contactForm.reset();
+        });
+        let mapLoaded = false;
+        function checkMapVisibility() {
+            const mapSection = document.querySelector('.map-section');
+            const mapRect = mapSection.getBoundingClientRect();
+            if (mapRect.top < window.innerHeight && mapRect.bottom > 0 && !mapLoaded) {
+                loadMap();
+                mapLoaded = true;
+            }
+        }
+        function loadMap() {
+            const mapPlaceholder = document.querySelector('.map-placeholder');
+            mapPlaceholder.innerHTML = 'Loading map...';
+            setTimeout(function() {
+                mapPlaceholder.style.backgroundColor = '#1a1a1a';
+                mapPlaceholder.innerHTML = '<div style="text-align: center;"><h3 style="margin-bottom: 10px; color: #00aaff;">Z3r0 d4y Headquarters</h3><p>123 Tech Hub Street, Cairo, Egypt</p></div>';
+            }, 1000);
+        }
+        window.addEventListener('scroll', checkMapVisibility);
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                checkMapVisibility();
+            }, 500);
+            const formInputs = document.querySelectorAll('.form-control');
+            formInputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.parentElement.classList.add('focused');
+                });
+                input.addEventListener('blur', function() {
+                    this.parentElement.classList.remove('focused');
+                });
+            });
+        });
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%^&*()*&^%+-/~{[|`]}';
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        const drops = [];
+        for (let i = 0; i < columns; i++) {
+            drops[i] = 1;
+        }
+        function draw() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#0f0';
+            ctx.font = fontSize + 'px monospace';
+            for (let i = 0; i < drops.length; i++) {
+                const text = characters.charAt(Math.floor(Math.random() * characters.length));
+                const x = i * fontSize;
+                const y = drops[i] * fontSize;
+                ctx.fillText(text, x, y);
+                if (y > canvas.height && Math.random() > 0.99) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+        setInterval(draw, 33);
+        window.addEventListener('resize', function() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+</body>
+</html>
